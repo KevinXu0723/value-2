@@ -57,9 +57,33 @@ st.markdown("""
     background: rgba(255,255,255,0.18);
     border: 1px solid rgba(255,255,255,0.35);
 }
+
+/* 功能卡片 */
+.tool-card {
+    background: #ffffff;
+    border: 1px solid #fee2e2;
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.08);
+    margin-top: 18px;
+}
+
+.tool-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #7f1d1d;
+    margin-bottom: 6px;
+}
+
+.tool-desc {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
 </style>
 """, unsafe_allow_html=True)
 
+# 顶部导航
 render_top_nav("home")
 
 # ===== 首页内容 =====
@@ -70,7 +94,7 @@ st.markdown("""
         <span class="badge">投研效率</span>
     </div>
     <h1 class="hero-title">📊 股票分析平台</h1>
-    <p class="hero-subtitle">使用顶部导航进入不同模块：估值工具 / 同行分析</p>
+    <p class="hero-subtitle">使用顶部导航进入不同模块：估值工具 / 同行分析 / 增长率计算器</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -83,3 +107,21 @@ st.markdown("""
 
 st.write("")
 st.write("欢迎使用，建议先关注公众号“持续加载”，加入微信交流群，学习了解价值投资后使用此工具。")
+
+# ===== 新增：功能入口区域 =====
+st.markdown("""
+<div class="tool-card">
+    <div class="tool-title">📈 年复合增长率计算器</div>
+    <div class="tool-desc">
+        支持标准 CAGR 计算，也支持初值为负、终值转正时基于线性假设计算转正后 CAGR。
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# 方式一：使用按钮跳转，推荐 Streamlit 新版本使用
+if st.button("进入增长率计算器", type="primary"):
+    st.switch_page("pages/growth.py")
+
+# 如果你的 Streamlit 版本较旧，不支持 st.switch_page，
+# 可以注释掉上面的 if st.button 部分，改用下面这一行：
+# st.page_link("pages/growth.py", label="📈 进入增长率计算器", icon="📈")
